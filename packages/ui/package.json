@@ -10,8 +10,13 @@
   ],
   "exports": {
     "./styles.css": "./dist/index.css",
-    "./tailwind/preset": "./src/tailwind/preset.ts",
-    "./button": "./src/components/button.tsx"
+    "./tailwind-preset": "./src/tailwind/preset.ts",
+    "./utils": "./src/lib/utils.ts",
+    "./button": "./src/components/button.tsx",
+    "./card": "./src/components/card.tsx",
+    "./form": "./src/components/form.tsx",
+    "./input": "./src/components/input.tsx",
+    "./label": "./src/components/label.tsx"
   },
   "scripts": {
     "build": "tailwindcss -i ./src/styles.css -o ./dist/index.css",
@@ -29,9 +34,11 @@
     "typescript": "^5.7.3"
   },
   "peerDependencies": {
-    "react": "^18.3.0"
+    "react": "^18.3.0",
+    "react-hook-form": "^7.54.0"
   },
   "dependencies": {
+    "@radix-ui/react-label": "^2.1.1",
     "@radix-ui/react-slot": "^1.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
