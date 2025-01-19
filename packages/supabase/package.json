@@ -3,7 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "lint": "eslint . --max-warnings 0"
+    "lint": "eslint . --max-warnings 0",
+    "db:generate": "supabase gen types --lang=typescript --project-id $PROJECT_ID --schema public > src/types/db.ts"
+  },
+  "exports": {
+    "./client": "./src/client/client.ts",
+    "./types": "./src/types/index.ts"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -11,7 +16,9 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.47.16"
+    "@supabase/ssr": "^0.5.2",
+    "@supabase/supabase-js": "^2.47.16",
+    "supabase": "^2.6.8"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
