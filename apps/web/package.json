@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@repo/ui": "workspace:*",
     "@repo/supabase": "workspace:*",
     "react": "^18",
     "react-dom": "^18",
