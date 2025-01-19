@@ -12,5 +12,10 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.47.16"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint -c ./packages/supabase/eslint.config.mjs --fix"
+    ]
   }
 }
