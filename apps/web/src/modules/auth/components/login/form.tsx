@@ -37,9 +37,9 @@ export function LoginForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-6"
       >
-        <div className="flex flex-col items-center gap-2 text-center">
+        <div className="flex flex-col gap-2">
           <h1 className="text-2xl font-bold">Entrar na sua conta</h1>
-          <p className="text-balance text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             Insira suas credenciais para acessar o sistema
           </p>
         </div>
@@ -100,13 +100,13 @@ export function LoginForm() {
           </Button>
         </div>
 
-        <div className="text-center text-sm">
+        <div className="text-sm">
           Ainda não tem uma conta?{' '}
           <Link
             href={routes.auth.signup}
             className="underline underline-offset-4"
           >
-            Cadastre-se
+            Solicitar acesso
           </Link>
         </div>
       </form>
