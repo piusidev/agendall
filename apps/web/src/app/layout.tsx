@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 
 import '@/modules/shared/styles/globals.css'
 import '@repo/ui/styles.css'
+import { Providers } from './providers'
 
 const inter = Inter({ subsets: ['latin'], fallback: ['sans-serif'] })
 
@@ -18,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   )
 }
