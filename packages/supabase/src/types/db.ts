@@ -9,27 +9,106 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      access_requests: {
+        Row: {
+          company_document: string
+          company_name: string
+          company_type: string
+          created_at: string
+          employee_count: number
+          id: string
+          observations: string
+          phone: string
+          responsible_name: string
+        }
+        Insert: {
+          company_document: string
+          company_name: string
+          company_type?: string
+          created_at?: string
+          employee_count: number
+          id?: string
+          observations: string
+          phone: string
+          responsible_name: string
+        }
+        Update: {
+          company_document?: string
+          company_name?: string
+          company_type?: string
+          created_at?: string
+          employee_count?: number
+          id?: string
+          observations?: string
+          phone?: string
+          responsible_name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'access_requests_company_type_fkey'
+            columns: ['company_type']
+            isOneToOne: false
+            referencedRelation: 'company_types'
+            referencedColumns: ['id']
+          },
+        ]
+      }
       clients: {
         Row: {
+          company_type: string | null
           created_at: string
+          document: string
+          employee_count: number
           id: string
           name: string
           status: Database['public']['Enums']['client_status']
           trade_name: string
         }
         Insert: {
+          company_type?: string | null
           created_at?: string
+          document: string
+          employee_count: number
           id?: string
           name: string
           status?: Database['public']['Enums']['client_status']
           trade_name: string
         }
         Update: {
+          company_type?: string | null
           created_at?: string
+          document?: string
+          employee_count?: number
           id?: string
           name?: string
           status?: Database['public']['Enums']['client_status']
           trade_name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'clients_company_type_fkey'
+            columns: ['company_type']
+            isOneToOne: false
+            referencedRelation: 'company_types'
+            referencedColumns: ['id']
+          },
+        ]
+      }
+      company_types: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
         }
         Relationships: []
       }
