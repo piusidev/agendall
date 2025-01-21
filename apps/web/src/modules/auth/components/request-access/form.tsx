@@ -4,14 +4,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { Button } from '@repo/ui/button'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@repo/ui/select'
+
 import { Input } from '@repo/ui/input'
 import {
   Form,
@@ -26,6 +19,7 @@ import { RequestAcessFormSchema, requestAcessFormSchema } from './schema'
 import Link from 'next/link'
 import { routes } from '@/modules/shared/config/routes'
 import { cnpjMask, phoneMask } from '@/modules/shared/utils/masks'
+import { SelectCompanyType } from '@/modules/shared/components/select-company-type'
 
 export function RequestAcessForm() {
   const form = useForm<RequestAcessFormSchema>({
@@ -36,7 +30,7 @@ export function RequestAcessForm() {
       companyName: '',
       name: '',
       phone: '',
-      lineOfBusiness: '',
+      companyType: '',
     },
   })
 
@@ -146,34 +140,36 @@ export function RequestAcessForm() {
 
             <FormField
               control={form.control}
-              name="lineOfBusiness"
+              name="companyType"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Ramo de atuação</FormLabel>
                   <FormControl>
-                    <Select
+                    <SelectCompanyType
+                      placeholder="Selecione uma opção"
                       onValueChange={field.onChange}
                       defaultValue={field.value}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Selecione uma opção" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectItem value="Clínica de estética">
-                            Clínica de estética
-                          </SelectItem>
-                          <SelectItem value="Salão de beleza">
-                            Salão de beleza
-                          </SelectItem>
-                          <SelectItem value="Fisioterapia">
-                            Fisioterapia
-                          </SelectItem>
-                          <SelectItem value="Barbearia">Barbearia</SelectItem>
-                          <SelectItem value="Outros">Outros</SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="employeeCount"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Número de profissionais</FormLabel>
+                  <FormControl>
+                    <Input
+                      id="employeeCount"
+                      type="number"
+                      placeholder=""
+                      min={0}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
