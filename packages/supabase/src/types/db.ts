@@ -17,9 +17,10 @@ export type Database = {
           created_at: string
           employee_count: number
           id: string
-          observations: string
-          phone: string
+          observations: string | null
+          responsible_email: string
           responsible_name: string
+          responsible_phone: string
         }
         Insert: {
           company_document: string
@@ -28,9 +29,10 @@ export type Database = {
           created_at?: string
           employee_count: number
           id?: string
-          observations: string
-          phone: string
+          observations?: string | null
+          responsible_email: string
           responsible_name: string
+          responsible_phone: string
         }
         Update: {
           company_document?: string
@@ -39,9 +41,10 @@ export type Database = {
           created_at?: string
           employee_count?: number
           id?: string
-          observations?: string
-          phone?: string
+          observations?: string | null
+          responsible_email?: string
           responsible_name?: string
+          responsible_phone?: string
         }
         Relationships: [
           {

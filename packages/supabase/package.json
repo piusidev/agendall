@@ -8,6 +8,7 @@
   },
   "exports": {
     "./client": "./src/client/client.ts",
+    "./server": "./src/client/server.ts",
     "./types": "./src/types/index.ts"
   },
   "devDependencies": {
@@ -19,6 +20,9 @@
     "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.47.16",
     "supabase": "^2.6.8"
+  },
+  "peerDependencies": {
+    "next": "^14.2.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
