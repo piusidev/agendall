@@ -1,4 +1,4 @@
-import { RequestAcessForm } from '@/modules/auth/components/request-access/form'
+import { RequestAcessForm } from '@/modules/auth/components/request-access-form'
 
 export default function Page() {
   return (

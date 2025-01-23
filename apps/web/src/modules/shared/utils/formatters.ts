@@ -1,3 +1,7 @@
+export const sanitize = (value: string) => {
+  return value.replace(/\D/g, '')
+}
+
 export const cnpjMask = (value: string) => {
   return value
     .replace(/\D+/g, '')

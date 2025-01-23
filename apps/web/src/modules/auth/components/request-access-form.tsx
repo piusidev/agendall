@@ -15,26 +15,38 @@ import {
   FormMessage,
 } from '@repo/ui/form'
 
-import { RequestAcessFormSchema, requestAcessFormSchema } from './schema'
+import {
+  requestAcessSchema,
+  RequestAcessSchema,
+} from '../schemas/request-access'
+
 import Link from 'next/link'
 import { routes } from '@/modules/shared/config/routes'
-import { cnpjMask, phoneMask } from '@/modules/shared/utils/masks'
+import { cnpjMask, phoneMask } from '@/modules/shared/utils/formatters'
 import { SelectCompanyType } from '@/modules/shared/components/select-company-type'
+import { useAction } from 'next-safe-action/hooks'
+import { requestAccessAction } from '../actions/request-access'
 
 export function RequestAcessForm() {
-  const form = useForm<RequestAcessFormSchema>({
-    resolver: zodResolver(requestAcessFormSchema),
+  const { execute } = useAction(requestAccessAction)
+
+  const form = useForm<RequestAcessSchema>({
+    resolver: zodResolver(requestAcessSchema),
     defaultValues: {
-      document: '',
-      email: '',
-      companyName: '',
-      name: '',
-      phone: '',
-      companyType: '',
+      company_document: '',
+      company_name: '',
+      company_type: '',
+      responsible_email: '',
+      responsible_name: '',
+      responsible_phone: '',
+      employee_count: 0,
     },
   })
 
-  function onSubmit(data: RequestAcessFormSchema) {}
+  function onSubmit(data: RequestAcessSchema) {
+    console.log(data)
+    execute(data)
+  }
 
   return (
     <Form {...form}>
@@ -56,7 +68,7 @@ export function RequestAcessForm() {
           <div className="flex flex-col gap-3">
             <FormField
               control={form.control}
-              name="document"
+              name="company_document"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>CNPJ</FormLabel>
@@ -68,7 +80,10 @@ export function RequestAcessForm() {
                       placeholder="00.000.000/0000-00"
                       {...field}
                       onChange={(e) =>
-                        form.setValue('document', cnpjMask(e.target.value))
+                        form.setValue(
+                          'company_document',
+                          cnpjMask(e.target.value),
+                        )
                       }
                     />
                   </FormControl>
@@ -79,14 +94,14 @@ export function RequestAcessForm() {
 
             <FormField
               control={form.control}
-              name="companyName"
+              name="company_name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Nome da empresa</FormLabel>
 
                   <FormControl>
                     <Input
-                      id="companyName"
+                      id="company_name"
                       type="text"
                       placeholder="Empresa Exemplo"
                       {...field}
@@ -99,13 +114,13 @@ export function RequestAcessForm() {
 
             <FormField
               control={form.control}
-              name="name"
+              name="responsible_name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Nome do responsável</FormLabel>
                   <FormControl>
                     <Input
-                      id="name"
+                      id="responsible_name"
                       type="text"
                       placeholder="João da Silva"
                       {...field}
@@ -118,7 +133,26 @@ export function RequestAcessForm() {
 
             <FormField
               control={form.control}
-              name="phone"
+              name="responsible_email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email do responsável</FormLabel>
+                  <FormControl>
+                    <Input
+                      id="responsible_email"
+                      type="email"
+                      placeholder="João da Silva"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="responsible_phone"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Telefone para contato</FormLabel>
@@ -129,7 +163,10 @@ export function RequestAcessForm() {
                       placeholder="(00) 000000-0000"
                       {...field}
                       onChange={(e) =>
-                        form.setValue('phone', phoneMask(e.target.value))
+                        form.setValue(
+                          'responsible_phone',
+                          phoneMask(e.target.value),
+                        )
                       }
                     />
                   </FormControl>
@@ -140,7 +177,7 @@ export function RequestAcessForm() {
 
             <FormField
               control={form.control}
-              name="companyType"
+              name="company_type"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Ramo de atuação</FormLabel>
@@ -158,15 +195,15 @@ export function RequestAcessForm() {
 
             <FormField
               control={form.control}
-              name="employeeCount"
+              name="employee_count"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Número de profissionais</FormLabel>
                   <FormControl>
                     <Input
-                      id="employeeCount"
+                      id="employee_count"
                       type="number"
-                      placeholder=""
+                      placeholder="0"
                       min={0}
                       {...field}
                     />
@@ -177,7 +214,11 @@ export function RequestAcessForm() {
             />
           </div>
 
-          <Button type="submit" className="w-full">
+          <Button
+            type="submit"
+            className="w-full"
+            onClick={() => console.log(form.formState.errors)}
+          >
             Solicitar acesso
           </Button>
 
