@@ -7,6 +7,7 @@
     "db:generate": "supabase gen types --lang=typescript --project-id $PROJECT_ID --schema public > src/types/db.ts"
   },
   "exports": {
+    "./middleware": "./src/client/middleware.ts",
     "./client": "./src/client/client.ts",
     "./server": "./src/client/server.ts",
     "./types": "./src/types/index.ts"

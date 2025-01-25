@@ -18,7 +18,9 @@ import {
 
 import { routes } from '@/modules/shared/config/routes'
 
-import { loginFormSchema, LoginFormSchema } from './schema'
+import { loginFormSchema, LoginFormSchema } from '../schemas/login'
+import { useAction } from 'next-safe-action/hooks'
+import { loginAction } from '../actions/login'
 
 export function LoginForm() {
   const form = useForm<LoginFormSchema>({
@@ -29,12 +31,12 @@ export function LoginForm() {
     },
   })
 
-  function onSubmit(data: LoginFormSchema) {}
+  const { execute, isExecuting } = useAction(loginAction)
 
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit(execute)}
         className="flex flex-col gap-6"
       >
         <div className="flex flex-col gap-2">
@@ -95,7 +97,7 @@ export function LoginForm() {
             />
           </div>
 
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full" disabled={isExecuting}>
             Entrar
           </Button>
         </div>
