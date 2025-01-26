@@ -3,6 +3,10 @@ export const routes = {
     login: '/auth/login',
     signup: '/auth/signup',
   },
-  onboarding: '/onboarding',
+  onboarding: {
+    root: '/onboarding',
+    createCompany: '/onboarding/create-company',
+    joinCompany: '/onboarding/join-company',
+  },
   dashboard: '/dashboard',
 }
