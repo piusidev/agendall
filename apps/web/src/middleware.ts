@@ -20,9 +20,22 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
-  if (user && request.nextUrl.pathname.startsWith('/auth')) {
+  const hasPassedOnboarding = user?.user_metadata?.has_passed_onboarding
+
+  if (
+    user &&
+    !hasPassedOnboarding &&
+    !request.nextUrl.pathname.startsWith('/onboarding')
+  ) {
     const url = request.nextUrl.clone()
     url.pathname = routes.onboarding
+
+    return NextResponse.redirect(url)
+  }
+
+  if (user && request.nextUrl.pathname.startsWith('/auth')) {
+    const url = request.nextUrl.clone()
+    url.pathname = routes.dashboard
 
     return NextResponse.redirect(url)
   }

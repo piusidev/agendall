@@ -152,6 +152,9 @@ importers:
       next:
         specifier: ^14.2.0
         version: 14.2.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react:
+        specifier: ^18.3.0
+        version: 18.3.1
       supabase:
         specifier: ^2.6.8
         version: 2.6.8
@@ -162,6 +165,9 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../config/typescript-config
+      '@types/react':
+        specifier: ^18.3.12
+        version: 18.3.18
       typescript:
         specifier: ^5.7.3
         version: 5.7.3
