@@ -23,6 +23,8 @@ import {
   CardTitle,
 } from '@repo/ui/card'
 
+import { toast } from '@repo/ui/toast'
+
 import { routes } from '@/modules/shared/config/routes'
 
 import { loginFormSchema, LoginFormSchema } from '../schemas/login'
@@ -38,7 +40,15 @@ export function LoginForm() {
     },
   })
 
-  const { execute, isExecuting } = useAction(loginAction)
+  const { execute, isExecuting } = useAction(loginAction, {
+    onError: ({ error }) => {
+      if (error.serverError) {
+        toast.error(error.serverError)
+      }
+
+      toast.error('Erro ao fazer login, tente novamente em alguns minutos')
+    },
+  })
 
   return (
     <div className="w-full max-w-sm">

@@ -16,8 +16,8 @@ export const loginAction = actionClient
 
     const { error } = await supabase.auth.signInWithPassword(parsedInput)
 
-    if (error) {
-      throw new BaseError(error.message)
+    if (error?.code === 'invalid_credentials') {
+      throw new BaseError('Credenciais inválidas')
     }
 
     return redirect('/onboarding')
