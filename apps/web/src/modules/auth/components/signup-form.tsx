@@ -21,6 +21,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from '@repo/ui/card'
@@ -56,17 +57,24 @@ export function SingUpForm() {
 
   if (emailSent) {
     return (
-      <div className="flex flex-col gap-6">
-        <h1 className="text-2xl font-bold">Verifique seu email</h1>
-        <p className="text-sm text-muted-foreground">
-          Enviamos um email de confirmação para você, verifique sua caixa de
-          entrada.
-        </p>
+      <Card className="w-full max-w-sm">
+        <CardHeader>
+          <CardTitle>Verifique seu email</CardTitle>
+        </CardHeader>
 
-        <Button className="w-full" asChild>
-          <Link href={routes.auth.login}>Voltar ao login</Link>
-        </Button>
-      </div>
+        <CardContent>
+          <p className="text-sm text-muted-foreground">
+            Enviamos um email de confirmação para você, verifique sua caixa de
+            entrada.
+          </p>
+        </CardContent>
+
+        <CardFooter>
+          <Button className="w-full" asChild>
+            <Link href={routes.auth.login}>Voltar ao login</Link>
+          </Button>
+        </CardFooter>
+      </Card>
     )
   }
 
@@ -97,7 +105,7 @@ export function SingUpForm() {
                             <Input
                               id="first_name"
                               type="text"
-                              placeholder="Untitled"
+                              placeholder="Alan"
                               {...field}
                             />
                           </FormControl>
@@ -116,7 +124,7 @@ export function SingUpForm() {
                             <Input
                               id="last_name"
                               type="text"
-                              placeholder="Silva"
+                              placeholder="Turing"
                               {...field}
                             />
                           </FormControl>
@@ -136,7 +144,7 @@ export function SingUpForm() {
                           <Input
                             id="email"
                             type="email"
-                            placeholder="untitled@gmail.com"
+                            placeholder="alan.turing@gmail.com"
                             {...field}
                           />
                         </FormControl>

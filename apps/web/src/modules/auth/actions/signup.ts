@@ -10,7 +10,7 @@ export const signUpAction = actionClient
   .action(async ({ parsedInput }) => {
     const supabase = createClient()
 
-    const { error } = await supabase.auth.signUp({
+    await supabase.auth.signUp({
       email: parsedInput.email,
       password: parsedInput.password,
       options: {
@@ -20,8 +20,4 @@ export const signUpAction = actionClient
         },
       },
     })
-
-    if (error) {
-      throw new Error(error.message)
-    }
   })
