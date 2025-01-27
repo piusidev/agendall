@@ -15,19 +15,28 @@ import {
   FormLabel,
   FormMessage,
 } from '@agendall/ui/form'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@agendall/ui/select'
 
 import { routes } from '@/modules/shared/config/routes'
 import { cnpjMask } from '@/modules/shared/utils/formatters'
-import { SelectCompanyType } from '@/modules/shared/components/select-company-type'
 
 import {
   createCompanySchema,
   CreateCompanySchema,
 } from '@/modules/onboarding/schemas/create-company'
 import { useOnboardingStore } from '@/modules/onboarding/stores/onboarding'
+import { useCompanyTypes } from '@/modules/shared/hooks/use-company-types'
 
 export function CompanyForm() {
   const { company, updateCompany, updateStep } = useOnboardingStore()
+  const { data: companyTypes } = useCompanyTypes()
 
   const form = useForm<CreateCompanySchema>({
     resolver: zodResolver(createCompanySchema),
@@ -62,7 +71,6 @@ export function CompanyForm() {
 
                     <FormControl>
                       <Input
-                        id="name"
                         type="text"
                         placeholder="Nome da Empresa"
                         {...field}
@@ -82,7 +90,6 @@ export function CompanyForm() {
 
                     <FormControl>
                       <Input
-                        id="document"
                         type="text"
                         placeholder="00.000.000/0000-00"
                         {...field}
@@ -103,13 +110,34 @@ export function CompanyForm() {
                 name="company_type"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel>Ramo de atuação</FormLabel>
+                    <FormLabel htmlFor="company_type">
+                      Ramo de atuação
+                    </FormLabel>
                     <FormControl>
-                      <SelectCompanyType
-                        placeholder="Selecione uma opção"
+                      <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
-                      />
+                        name={field.name}
+                      >
+                        <SelectTrigger
+                          className="bg-background"
+                          id={field.name}
+                        >
+                          <SelectValue placeholder="Selecione uma opção" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            {companyTypes?.map((companyType) => (
+                              <SelectItem
+                                key={companyType.value}
+                                value={companyType.value}
+                              >
+                                {companyType.label}
+                              </SelectItem>
+                            ))}
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -123,12 +151,7 @@ export function CompanyForm() {
                   <FormItem className="w-full">
                     <FormLabel>Número de profissionais</FormLabel>
                     <FormControl>
-                      <Input
-                        id="employee_count"
-                        type="text"
-                        placeholder="0"
-                        {...field}
-                      />
+                      <Input type="text" placeholder="0" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
