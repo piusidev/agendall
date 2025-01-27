@@ -56,7 +56,7 @@ export type Database = {
           },
         ]
       }
-      clients: {
+      companies: {
         Row: {
           company_type: string | null
           created_at: string
@@ -142,7 +142,7 @@ export type Database = {
             foreignKeyName: 'users_client_id_fkey'
             columns: ['client_id']
             isOneToOne: false
-            referencedRelation: 'clients'
+            referencedRelation: 'companies'
             referencedColumns: ['id']
           },
         ]

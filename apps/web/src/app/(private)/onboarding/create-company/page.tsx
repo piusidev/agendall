@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 
-import { CreateCompanyForm } from '@/modules/onboarding/components/create-company-form'
+import { CreateCompany } from '@/modules/onboarding/components/create-company'
+import { Logo } from '@repo/ui/logo'
 
 export const metadata: Metadata = {
   title: 'Onboarding - Criar empresa',
@@ -8,8 +9,14 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   return (
-    <div className="bg-muted min-h-svh flex flex-col items-center justify-center p-2">
-      <CreateCompanyForm />
+    <div className="bg-muted min-h-svh flex flex-col gap-4 p-6">
+      <div className="flex justify-center gap-2 md:justify-start">
+        <Logo />
+      </div>
+
+      <div className="flex flex-1 items-center justify-center">
+        <CreateCompany />
+      </div>
     </div>
   )
 }
