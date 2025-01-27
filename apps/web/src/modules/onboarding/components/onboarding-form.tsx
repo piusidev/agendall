@@ -1,35 +1,51 @@
 import Link from 'next/link'
 import { LogIn, CirclePlus } from 'lucide-react'
 
-import { Card, CardContent, CardHeader, CardTitle } from '@agendall/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@agendall/ui/card'
+import { Button } from '@agendall/ui/button'
+import { Separator } from '@agendall/ui/separator'
+
 import { routes } from '@/modules/shared/config/routes'
 
 export function OnboardingForm() {
   return (
-    <div className="w-full max-w-2xl">
+    <div className="w-full max-w-sm">
       <Card>
         <CardHeader>
-          <CardTitle>Vamos configurar a sua conta...</CardTitle>
+          <CardTitle>Seja bem-vindo ao Agendall!</CardTitle>
+          <CardDescription>
+            Primeiro, escolha como configurar sua conta
+          </CardDescription>
         </CardHeader>
 
-        <CardContent className="flex gap-4 justify-between">
-          <Link
-            href={routes.onboarding.joinCompany}
-            className="focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring border bg-muted flex flex-col gap-4 justify-center items-center w-full rounded-xl px-4 py-6 text-muted-foreground transition-all hover:shadow hover:bg-muted/80"
-          >
-            <LogIn className="size-10" />
+        <CardContent className="flex flex-col gap-3">
+          <Button size="lg" asChild>
+            <Link href={routes.onboarding.joinCompany}>
+              <LogIn />
 
-            <h3>Entrar em uma empresa</h3>
-          </Link>
+              <h3>Entrar em uma empresa</h3>
+            </Link>
+          </Button>
 
-          <Link
-            href={routes.onboarding.createCompany}
-            className="focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring border bg-muted flex flex-col gap-4 justify-center items-center w-full rounded-xl px-4 py-6 text-muted-foreground transition-shadow hover:shadow hover:bg-muted/80"
-          >
-            <CirclePlus className="size-10" />
+          <div className="w-full flex items-center justify-center gap-2 overflow-hidden">
+            <Separator />
+            <p className="text-muted-foreground text-sm">ou</p>
+            <Separator />
+          </div>
 
-            <h3>Criar uma empresa</h3>
-          </Link>
+          <Button size="lg" asChild>
+            <Link href={routes.onboarding.createCompany}>
+              <CirclePlus />
+
+              <h3>Criar uma empresa</h3>
+            </Link>
+          </Button>
         </CardContent>
       </Card>
     </div>
