@@ -12,17 +12,7 @@ import { useOnboardingStore } from '@/modules/onboarding/stores/onboarding'
 
 import { CompanyForm } from './company-form'
 import { FreeTrial } from './free-trial'
-import clsx from 'clsx'
 import { Success } from './success'
-
-function getStepStyles(position: number, step: number) {
-  return clsx(
-    `transition-all size-2 rounded-full ${step >= position ? 'bg-primary' : 'bg-primary/40'}`,
-    {
-      'size-3': step === position,
-    },
-  )
-}
 
 function renderStep(step: number) {
   switch (step) {
@@ -68,18 +58,44 @@ export function CreateCompany() {
 
   const header = getStepHeader(step)
 
+  const progress = step * 33.33 - 100
+
   return (
     <div className="w-full max-w-2xl">
       <Card>
-        <CardHeader>
-          <div className="flex justify-center items-center gap-2 min-h-4 mb-4">
-            <div className={getStepStyles(1, step)}></div>
-            <div className={getStepStyles(2, step)}></div>
-            <div className={getStepStyles(3, step)}></div>
+        <CardHeader className="flex flex-row justify-between items-center">
+          <div>
+            <CardTitle>{header.title}</CardTitle>
+            <CardDescription>{header.description}</CardDescription>
           </div>
 
-          <CardTitle>{header.title}</CardTitle>
-          <CardDescription>{header.description}</CardDescription>
+          <div className="relative size-8">
+            <svg
+              className="size-full -rotate-90"
+              viewBox="0 0 36 36"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="18"
+                cy="18"
+                r="16"
+                fill="none"
+                className="stroke-current text-muted"
+                strokeWidth="4"
+              ></circle>
+              <circle
+                cx="18"
+                cy="18"
+                r="16"
+                fill="none"
+                className="stroke-current text-primary transition-[stroke-dashoffset] duration-500 ease-out"
+                strokeWidth="4"
+                strokeDasharray="100"
+                strokeDashoffset={progress}
+                strokeLinecap="round"
+              ></circle>
+            </svg>
+          </div>
         </CardHeader>
 
         <CardContent>{renderStep(step)}</CardContent>
