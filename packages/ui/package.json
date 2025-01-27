@@ -9,8 +9,8 @@
     "dist"
   ],
   "exports": {
-    "./styles.css": "./dist/index.css",
-    "./tailwind-preset": "./src/tailwind/preset.ts",
+    "./styles.css": "./src/styles.css",
+    "./tailwind-config": "./tailwind.config.ts",
     "./utils": "./src/lib/utils.ts",
     "./button": "./src/components/button.tsx",
     "./card": "./src/components/card.tsx",
@@ -22,8 +22,6 @@
     "./toast": "./src/components/toast.tsx"
   },
   "scripts": {
-    "build": "tailwindcss -i ./src/styles.css -o ./dist/index.css",
-    "dev": "tailwindcss -i ./src/styles.css -o ./dist/index.css --watch",
     "lint": "eslint . --max-warnings 0",
     "check-types": "tsc --noEmit"
   },

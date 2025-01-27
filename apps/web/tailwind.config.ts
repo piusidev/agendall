@@ -1,10 +1,10 @@
 import type { Config } from 'tailwindcss'
 
-import { uiPreset } from '@agendall/ui/tailwind-preset'
+import baseConfig from '@agendall/ui/tailwind-config'
 
 const config: Config = {
-  content: ['./src/**/*.{ts,tsx}'],
-  presets: [uiPreset],
+  content: ['./src/**/*.{ts,tsx}', '../../packages/ui/src/**/*.{ts,tsx}'],
+  presets: [baseConfig],
 }
 
 export default config
