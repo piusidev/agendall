@@ -31,8 +31,8 @@ function getStepHeader(step: number) {
   switch (step) {
     case 1:
       return {
-        title: 'Vamos configurar sua empresa',
-        description: 'Conte-nos mais sobre seu negócio',
+        title: 'Configure sua empresa',
+        description: 'Nos conte mais sobre o seu negócio para começarmos',
       }
     case 2:
       return {
@@ -64,7 +64,7 @@ export function CreateCompany() {
     <div className="w-full max-w-2xl">
       <Card>
         <CardHeader className="flex flex-row justify-between items-center">
-          <div>
+          <div className="flex flex-col space-y-1.5">
             <CardTitle>{header.title}</CardTitle>
             <CardDescription>{header.description}</CardDescription>
           </div>
