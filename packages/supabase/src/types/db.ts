@@ -58,39 +58,54 @@ export type Database = {
       }
       companies: {
         Row: {
-          company_type: string | null
+          city: string
+          complement: string | null
           created_at: string
-          document: string
           employee_count: number
           id: string
           name: string
+          neighborhood: string
+          number: string
+          postal_code: string
+          state: string
           status: Database['public']['Enums']['client_status']
-          trade_name: string
+          street: string
+          type: string | null
         }
         Insert: {
-          company_type?: string | null
+          city: string
+          complement?: string | null
           created_at?: string
-          document: string
           employee_count: number
           id?: string
           name: string
+          neighborhood: string
+          number: string
+          postal_code: string
+          state: string
           status?: Database['public']['Enums']['client_status']
-          trade_name: string
+          street: string
+          type?: string | null
         }
         Update: {
-          company_type?: string | null
+          city?: string
+          complement?: string | null
           created_at?: string
-          document?: string
           employee_count?: number
           id?: string
           name?: string
+          neighborhood?: string
+          number?: string
+          postal_code?: string
+          state?: string
           status?: Database['public']['Enums']['client_status']
-          trade_name?: string
+          street?: string
+          type?: string | null
         }
         Relationships: [
           {
             foreignKeyName: 'clients_company_type_fkey'
-            columns: ['company_type']
+            columns: ['type']
             isOneToOne: false
             referencedRelation: 'company_types'
             referencedColumns: ['id']
