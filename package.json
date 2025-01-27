@@ -1,5 +1,5 @@
 {
-  "name": "untitled-project",
+  "name": "agendall",
   "private": true,
   "scripts": {
     "prepare": "husky",

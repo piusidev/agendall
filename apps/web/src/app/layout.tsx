@@ -1,16 +1,17 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
-import '@/modules/shared/styles/globals.css'
 import '@repo/ui/styles.css'
+import '@/modules/shared/styles/globals.css'
+
 import { Providers } from './providers'
 
 const inter = Inter({ subsets: ['latin'], fallback: ['sans-serif'] })
 
 export const metadata: Metadata = {
   title: {
-    default: 'Untitled',
-    template: 'Untitled | %s',
+    default: 'Agendall',
+    template: 'Agendall | %s',
   },
   description: 'Gestão inteligente',
 }

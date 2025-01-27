@@ -54,7 +54,7 @@ export function LoginForm() {
     <div className="w-full max-w-sm">
       <Card>
         <CardHeader>
-          <CardTitle>Entrar no Untitled</CardTitle>
+          <CardTitle>Entrar no Agendall</CardTitle>
           <CardDescription>Preencha seus dados abaixo</CardDescription>
         </CardHeader>
 

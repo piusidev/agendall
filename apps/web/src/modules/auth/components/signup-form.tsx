@@ -82,7 +82,7 @@ export function SingUpForm() {
     <div className="w-full max-w-sm">
       <Card>
         <CardHeader>
-          <CardTitle>Criar conta no Untitled</CardTitle>
+          <CardTitle>Criar conta no Agendall</CardTitle>
           <CardDescription>Preencha seus dados abaixo</CardDescription>
         </CardHeader>
 

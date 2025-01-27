@@ -17,6 +17,7 @@
     "./form": "./src/components/form.tsx",
     "./input": "./src/components/input.tsx",
     "./label": "./src/components/label.tsx",
+    "./logo": "./src/components/logo.tsx",
     "./select": "./src/components/select.tsx",
     "./toast": "./src/components/toast.tsx"
   },
