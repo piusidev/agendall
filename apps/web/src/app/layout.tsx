@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
-import '@repo/ui/styles.css'
+import '@agendall/ui/styles.css'
 import '@/modules/shared/styles/globals.css'
 
 import { Providers } from './providers'

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@repo/supabase/client'
+import { createClient } from '@agendall/supabase/client'
 
 export async function GET() {
   try {

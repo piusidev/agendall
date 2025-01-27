@@ -1,5 +1,5 @@
 {
-  "extends": "@repo/typescript-config/next.json",
+  "extends": "@agendall/typescript-config/next.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

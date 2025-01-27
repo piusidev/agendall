@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation'
 
-import { createClient } from '@repo/supabase/server'
+import { createClient } from '@agendall/supabase/server'
 
 import { actionClient } from '@/modules/shared/lib/safe-action'
 import { BaseError } from '@/modules/shared/errors/base-error'

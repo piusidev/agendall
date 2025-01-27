@@ -6,7 +6,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@repo/ui/card'
+} from '@agendall/ui/card'
 
 import { useOnboardingStore } from '@/modules/onboarding/stores/onboarding'
 

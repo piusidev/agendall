@@ -1,5 +1,5 @@
 {
-  "name": "@repo/ui",
+  "name": "@agendall/ui",
   "version": "0.0.0",
   "private": true,
   "sideEffects": [
@@ -28,8 +28,8 @@
     "check-types": "tsc --noEmit"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@agendall/eslint-config": "workspace:*",
+    "@agendall/typescript-config": "workspace:*",
     "@types/react": "^18.3.12",
     "autoprefixer": "^10.4.20",
     "postcss": "^8",

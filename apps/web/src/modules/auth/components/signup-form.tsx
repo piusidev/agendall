@@ -7,8 +7,8 @@ import { useAction } from 'next-safe-action/hooks'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { Button } from '@repo/ui/button'
-import { Input } from '@repo/ui/input'
+import { Button } from '@agendall/ui/button'
+import { Input } from '@agendall/ui/input'
 import {
   Form,
   FormControl,
@@ -16,7 +16,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@repo/ui/form'
+} from '@agendall/ui/form'
 import {
   Card,
   CardContent,
@@ -24,10 +24,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@repo/ui/card'
+} from '@agendall/ui/card'
 
 import { routes } from '@/modules/shared/config/routes'
-import { toast } from '@repo/ui/toast'
+import { toast } from '@agendall/ui/toast'
 
 import { signUpAction } from '../actions/signup'
 import { signUpSchema, type SignUpSchema } from '../schemas/signup'

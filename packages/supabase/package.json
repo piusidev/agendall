@@ -1,5 +1,5 @@
 {
-  "name": "@repo/supabase",
+  "name": "@agendall/supabase",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -14,8 +14,8 @@
     "./queries/*": "./src/queries/*.ts"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@agendall/eslint-config": "workspace:*",
+    "@agendall/typescript-config": "workspace:*",
     "@types/react": "^18.3.12",
     "typescript": "^5.7.3"
   },

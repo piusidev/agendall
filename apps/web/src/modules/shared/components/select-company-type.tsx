@@ -9,7 +9,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@repo/ui/select'
+} from '@agendall/ui/select'
 
 import { useCompanyTypes } from '../hooks/use-company-types'
 

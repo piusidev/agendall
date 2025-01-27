@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from 'next/server'
 
-import { createClient } from '@repo/supabase/server'
-import { updateSession } from '@repo/supabase/middleware'
+import { createClient } from '@agendall/supabase/server'
+import { updateSession } from '@agendall/supabase/middleware'
 
 import { routes } from '@/modules/shared/config/routes'
 

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { LogIn, CirclePlus } from 'lucide-react'
 
-import { Card, CardContent, CardHeader, CardTitle } from '@repo/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@agendall/ui/card'
 import { routes } from '@/modules/shared/config/routes'
 
 export function OnboardingForm() {

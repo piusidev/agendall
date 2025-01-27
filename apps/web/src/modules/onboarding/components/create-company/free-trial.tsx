@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@repo/ui/button'
+import { Button } from '@agendall/ui/button'
 
 import { useOnboardingStore } from '@/modules/onboarding/stores/onboarding'
 import { CircleCheck } from 'lucide-react'

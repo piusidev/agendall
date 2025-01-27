@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@repo/ui/button'
+import { Button } from '@agendall/ui/button'
 import { CheckCircle } from 'lucide-react'
 
 export function Success() {

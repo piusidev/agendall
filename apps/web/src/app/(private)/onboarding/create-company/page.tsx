@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 
 import { CreateCompany } from '@/modules/onboarding/components/create-company'
-import { Logo } from '@repo/ui/logo'
+import { Logo } from '@agendall/ui/logo'
 
 export const metadata: Metadata = {
   title: 'Onboarding - Criar empresa',

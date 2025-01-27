@@ -5,8 +5,8 @@ import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { Button } from '@repo/ui/button'
-import { Input } from '@repo/ui/input'
+import { Button } from '@agendall/ui/button'
+import { Input } from '@agendall/ui/input'
 import {
   Form,
   FormControl,
@@ -14,7 +14,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@repo/ui/form'
+} from '@agendall/ui/form'
 
 import { routes } from '@/modules/shared/config/routes'
 import { cnpjMask } from '@/modules/shared/utils/formatters'

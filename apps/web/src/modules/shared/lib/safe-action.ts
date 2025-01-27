@@ -2,7 +2,7 @@ import { createSafeActionClient } from 'next-safe-action'
 
 import { DEFAULT_SERVER_ERROR_MESSAGE } from '../utils/constants'
 import { BaseError } from '../errors/base-error'
-import { createClient } from '@repo/supabase/server'
+import { createClient } from '@agendall/supabase/server'
 
 export const actionClient = createSafeActionClient({
   handleServerError(e) {
