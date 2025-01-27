@@ -63,13 +63,13 @@ export function CreateCompany() {
   return (
     <div className="w-full max-w-2xl">
       <Card>
-        <CardHeader className="flex flex-row justify-between items-center">
+        <CardHeader className="flex gap-2 flex-row justify-between items-start">
           <div className="flex flex-col space-y-1.5">
             <CardTitle>{header.title}</CardTitle>
             <CardDescription>{header.description}</CardDescription>
           </div>
 
-          <div className="relative size-8">
+          <div className="relative min-w-8 size-8">
             <svg
               className="size-full -rotate-90"
               viewBox="0 0 36 36"

@@ -52,7 +52,7 @@ export function CompanyForm() {
       >
         <div className="grid gap-6">
           <div className="flex flex-col gap-3">
-            <div className="flex gap-2">
+            <div className="flex flex-col md:flex-row gap-2">
               <FormField
                 control={form.control}
                 name="name"
@@ -97,7 +97,7 @@ export function CompanyForm() {
               />
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex flex-col md:flex-row gap-2">
               <FormField
                 control={form.control}
                 name="company_type"
