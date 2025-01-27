@@ -1,6 +1,6 @@
 import { CenteredTemplate } from '@/modules/shared/templates/centered'
 
-export default function AuthLayout({
+export default function OnboardingLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
