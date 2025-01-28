@@ -8,20 +8,19 @@ import {
   CardTitle,
 } from '@agendall/ui/card'
 
-import { useOnboardingStore } from '@/modules/onboarding/stores/onboarding'
+import { useCreateCompanyStore } from '@/modules/onboarding/stores/create-company'
 
-import { CompanyForm } from './company-form'
-import { FreeTrial } from './free-trial'
-import { Success } from './success'
+import { CompanyInfoForm } from './company-info-form'
+import { CompanyAdressForm } from './company-address-form'
 
 function renderStep(step: number) {
   switch (step) {
     case 1:
-      return <CompanyForm />
+      return <CompanyInfoForm />
     case 2:
-      return <FreeTrial />
+      return <CompanyAdressForm />
     case 3:
-      return <Success />
+      return <CompanyAdressForm />
     default:
       return null
   }
@@ -36,9 +35,9 @@ function getStepHeader(step: number) {
       }
     case 2:
       return {
-        title: 'Você tem 7 dias grátis para testar o Agendall!',
+        title: 'Onde fica seu negócio?',
         description:
-          'Se você gostar, pode assinar e continuar usando o Agendall sem interrupções',
+          'Esta informação ajudará a posicionar você nas ferramentas de busca',
       }
     case 3:
       return {
@@ -54,7 +53,7 @@ function getStepHeader(step: number) {
 }
 
 export function CreateCompany() {
-  const { step } = useOnboardingStore()
+  const { step } = useCreateCompanyStore()
 
   const header = getStepHeader(step)
 

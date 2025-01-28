@@ -25,31 +25,29 @@ import {
 } from '@agendall/ui/select'
 
 import { routes } from '@/modules/shared/config/routes'
-import { cnpjMask } from '@/modules/shared/utils/formatters'
 
 import {
-  createCompanySchema,
-  CreateCompanySchema,
+  companyInfoSchema,
+  type CompanyInfoSchema,
 } from '@/modules/onboarding/schemas/create-company'
-import { useOnboardingStore } from '@/modules/onboarding/stores/onboarding'
+import { useCreateCompanyStore } from '@/modules/onboarding/stores/create-company'
 import { useCompanyTypes } from '@/modules/shared/hooks/use-company-types'
 
-export function CompanyForm() {
-  const { company, updateCompany, updateStep } = useOnboardingStore()
+export function CompanyInfoForm() {
+  const { company, updateCompanyInfo, updateStep } = useCreateCompanyStore()
   const { data: companyTypes } = useCompanyTypes()
 
-  const form = useForm<CreateCompanySchema>({
-    resolver: zodResolver(createCompanySchema),
+  const form = useForm<CompanyInfoSchema>({
+    resolver: zodResolver(companyInfoSchema),
     defaultValues: {
-      document: company.document,
       name: company.name,
-      company_type: company.company_type,
+      type: company.type,
       employee_count: company.employee_count || undefined,
     },
   })
 
-  function onSubmit(data: CreateCompanySchema) {
-    updateCompany(data)
+  function onSubmit(data: CompanyInfoSchema) {
+    updateCompanyInfo(data)
     updateStep(2)
   }
 
@@ -61,58 +59,32 @@ export function CompanyForm() {
       >
         <div className="grid gap-6">
           <div className="flex flex-col gap-3">
-            <div className="flex flex-col md:flex-row gap-2">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel>Nome da Empresa</FormLabel>
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel>Nome da Empresa</FormLabel>
 
-                    <FormControl>
-                      <Input
-                        type="text"
-                        placeholder="Nome da Empresa"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="document"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel>CNPJ</FormLabel>
-
-                    <FormControl>
-                      <Input
-                        type="text"
-                        placeholder="00.000.000/0000-00"
-                        {...field}
-                        onChange={(e) =>
-                          form.setValue('document', cnpjMask(e.target.value))
-                        }
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+                  <FormControl>
+                    <Input
+                      type="text"
+                      placeholder="Nome da Empresa"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
             <div className="flex flex-col md:flex-row gap-2">
               <FormField
                 control={form.control}
-                name="company_type"
+                name="type"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel htmlFor="company_type">
-                      Ramo de atuação
-                    </FormLabel>
+                    <FormLabel htmlFor="type">Ramo de atuação</FormLabel>
                     <FormControl>
                       <Select
                         onValueChange={field.onChange}
