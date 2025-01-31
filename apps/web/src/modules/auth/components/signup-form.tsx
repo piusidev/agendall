@@ -192,7 +192,7 @@ export function SingUpForm() {
                   />
                 </div>
 
-                <Button type="submit" className="w-full" disabled={isExecuting}>
+                <Button type="submit" className="w-full" loading={isExecuting}>
                   Criar conta
                 </Button>
               </div>

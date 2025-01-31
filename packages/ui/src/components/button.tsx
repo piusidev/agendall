@@ -1,11 +1,13 @@
 import * as React from 'react'
+
 import { Slot } from '@radix-ui/react-slot'
+import { Loader } from 'lucide-react'
 import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@ui/lib/utils'
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+  'relative overflow-hidden group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
@@ -38,17 +40,50 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
+  loading?: boolean
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : 'button'
+  (
+    {
+      children,
+      className,
+      variant,
+      size,
+      loading = false,
+      asChild = false,
+      ...props
+    },
+    ref,
+  ) => {
+    if (asChild) {
+      return (
+        <Slot
+          className={cn(buttonVariants({ variant, size, className }))}
+          ref={ref}
+          {...props}
+        >
+          {children}
+        </Slot>
+      )
+    }
+
     return (
-      <Comp
+      <button
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
+        aria-busy={loading}
+        disabled={loading}
         {...props}
-      />
+      >
+        <div className="transition-all duration-300 flex items-center justify-center gap-2 translate-y-[0] transform opacity-100 group-aria-busy:translate-y-[-100%] group-aria-busy:opacity-0">
+          {children}
+        </div>
+
+        <div className="transition-all duration-300 absolute translate-y-[100%] transform opacity-0  group-aria-busy:translate-y-0 group-aria-busy:opacity-100">
+          <Loader className="animate-spin" />
+        </div>
+      </button>
     )
   },
 )

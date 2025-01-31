@@ -43,7 +43,7 @@ export function LoginForm() {
   const { execute, isExecuting } = useAction(loginAction, {
     onError: ({ error }) => {
       if (error.serverError) {
-        toast.error(error.serverError)
+        return toast.error(error.serverError)
       }
 
       toast.error('Erro ao fazer login, tente novamente em alguns minutos')
@@ -115,7 +115,7 @@ export function LoginForm() {
                   />
                 </div>
 
-                <Button type="submit" className="w-full" disabled={isExecuting}>
+                <Button type="submit" className="w-full" loading={isExecuting}>
                   Entrar
                 </Button>
               </div>
