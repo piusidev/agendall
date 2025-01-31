@@ -15,13 +15,15 @@ import {
 } from '@agendall/ui/form'
 
 import { cepMask } from '@/modules/shared/utils/formatters'
-import { useCEP } from '@/modules/shared/hooks/use-cep'
 
 import {
   companyAddressSchema,
   type CompanyAddressSchema,
 } from '@/modules/onboarding/schemas/create-company'
 import { useCreateCompanyStore } from '@/modules/onboarding/stores/create-company'
+import { getAddressByCEP } from '@/modules/shared/services/get-address-by-cep'
+import { useQuery } from '@tanstack/react-query'
+import { useEffect } from 'react'
 
 export function CompanyAdressForm() {
   const { company, updateCompanyAddress, updateStep } = useCreateCompanyStore()
@@ -39,18 +41,25 @@ export function CompanyAdressForm() {
     },
   })
 
-  const cep = form.watch('zipcode')
+  const zipcode = form.watch('zipcode')
 
-  const { data: address } = useCEP(cep)
+  const { data: address } = useQuery({
+    queryKey: ['cep', form.getFieldState],
+    queryFn: () => getAddressByCEP(zipcode),
+    enabled: !!zipcode && zipcode.length === 9,
+    refetchOnWindowFocus: false,
+  })
 
-  if (address) {
-    form.setValue('street', address.street)
-    form.setValue('neighborhood', address.neighborhood)
-    form.setValue('city', address.city)
-    form.setValue('state', address.state)
-  }
+  useEffect(() => {
+    if (address) {
+      form.setValue('street', address.street)
+      form.setValue('neighborhood', address.neighborhood)
+      form.setValue('city', address.city)
+      form.setValue('state', address.state)
+    }
+  }, [address, form])
 
-  function onSubmit(data: CompanyAddressSchema) {
+  const onSubmit = (data: CompanyAddressSchema) => {
     updateCompanyAddress(data)
     updateStep(3)
   }
@@ -74,10 +83,10 @@ export function CompanyAdressForm() {
                     <FormControl>
                       <Input
                         type="text"
-                        placeholder=""
+                        placeholder="00000-000"
                         {...field}
                         onChange={(e) =>
-                          form.setValue('zipcode', cepMask(e.target.value))
+                          field.onChange(cepMask(e.target.value))
                         }
                       />
                     </FormControl>
