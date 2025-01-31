@@ -1,3 +1,3 @@
 export const CACHE_KEYS = {
-  zipcode: 'zipcode',
+  ADDRESS_BY_ZIPCODE: 'zipcode',
 }

@@ -5,7 +5,7 @@ import { CACHE_KEYS } from '../config/cache-keys'
 
 export function useAddressByZipcode(cep: string) {
   return useQuery({
-    queryKey: [CACHE_KEYS.zipcode, cep],
+    queryKey: [CACHE_KEYS.ADDRESS_BY_ZIPCODE, cep],
     queryFn: () => getAddressByZipcode(cep),
     enabled: Boolean(cep) && cep.length === 9,
     refetchOnWindowFocus: false,
