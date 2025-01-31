@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect } from 'react'
+
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -15,15 +17,13 @@ import {
 } from '@agendall/ui/form'
 
 import { cepMask } from '@/modules/shared/utils/formatters'
+import { useAddressByZipcode } from '@/modules/shared/hooks/use-address-by-zipcode'
 
 import {
   companyAddressSchema,
   type CompanyAddressSchema,
 } from '@/modules/onboarding/schemas/create-company'
 import { useCreateCompanyStore } from '@/modules/onboarding/stores/create-company'
-import { getAddressByCEP } from '@/modules/shared/services/get-address-by-cep'
-import { useQuery } from '@tanstack/react-query'
-import { useEffect } from 'react'
 
 export function CompanyAdressForm() {
   const { company, updateCompanyAddress, updateStep } = useCreateCompanyStore()
@@ -43,12 +43,7 @@ export function CompanyAdressForm() {
 
   const zipcode = form.watch('zipcode')
 
-  const { data: address } = useQuery({
-    queryKey: ['cep', form.getFieldState],
-    queryFn: () => getAddressByCEP(zipcode),
-    enabled: !!zipcode && zipcode.length === 9,
-    refetchOnWindowFocus: false,
-  })
+  const { data: address } = useAddressByZipcode(zipcode)
 
   useEffect(() => {
     if (address) {

@@ -8,6 +8,8 @@ type Address = {
   street: string
 }
 
-export async function getAddressByCEP(cep: string) {
-  return api.get(`https://brasilapi.com.br/api/cep/v1/${cep}`).json<Address>()
+export async function getAddressByZipcode(zipcode: string) {
+  return api
+    .get(`https://brasilapi.com.br/api/cep/v1/${zipcode}`)
+    .json<Address>()
 }
