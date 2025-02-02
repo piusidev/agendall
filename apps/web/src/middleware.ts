@@ -20,6 +20,13 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
+  if (user && request.nextUrl.pathname.startsWith('/auth')) {
+    const url = request.nextUrl.clone()
+    url.pathname = routes.dashboard
+
+    return NextResponse.redirect(url)
+  }
+
   const hasPassedOnboarding = user?.user_metadata?.has_passed_onboarding
 
   if (
@@ -33,7 +40,11 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
-  if (user && request.nextUrl.pathname.startsWith('/auth')) {
+  if (
+    user &&
+    hasPassedOnboarding &&
+    request.nextUrl.pathname.startsWith('/onboarding')
+  ) {
     const url = request.nextUrl.clone()
     url.pathname = routes.dashboard
 
