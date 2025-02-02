@@ -1,7 +1,6 @@
 import type { Client } from '../types'
 
-export const getUserQuery = async (supabase: Client, userId: string) => {
-  console.log('getUserQuery', userId)
+export function getUserQuery(supabase: Client, userId: string) {
   return supabase
     .from('users')
     .select(

@@ -11,7 +11,8 @@
     "./client": "./src/client/client.ts",
     "./server": "./src/client/server.ts",
     "./types": "./src/types/index.ts",
-    "./queries/*": "./src/queries/*.ts"
+    "./queries/*": "./src/queries/*.ts",
+    "./mutations/*": "./src/mutations/*.ts"
   },
   "devDependencies": {
     "@agendall/eslint-config": "workspace:*",
