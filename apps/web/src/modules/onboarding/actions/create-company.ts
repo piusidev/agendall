@@ -2,6 +2,9 @@
 
 import { redirect } from 'next/navigation'
 
+import { updateUser } from '@agendall/supabase/mutations/user'
+import { createCompany } from '@agendall/supabase/mutations/company'
+
 import { authActionClient } from '@/modules/shared/lib/safe-action'
 import { BaseError } from '@/modules/shared/errors/base-error'
 import { routes } from '@/modules/shared/config/routes'
@@ -11,32 +14,29 @@ import { createCompanySchema } from '../schemas/create-company'
 
 export const createCompanyAction = authActionClient
   .schema(createCompanySchema)
-  .action(async ({ parsedInput, ctx }) => {
-    const { supabase, user } = ctx
-
+  .action(async ({ parsedInput, ctx: { supabase, user } }) => {
     if (user.company_id) {
       throw new BaseError('Você já possui uma empresa cadastrada')
     }
 
-    const { zipcode, ...companyData } = parsedInput
+    const { data: company, error: companyCreateError } = await createCompany(
+      supabase,
+      {
+        ...parsedInput,
+        zipcode: sanitize(parsedInput.zipcode),
+      },
+    )
 
-    const { data: company, error: companyInsertError } = await supabase
-      .from('companies')
-      .insert({ ...companyData, zipcode: sanitize(zipcode) })
-      .select()
-      .single()
-
-    if (companyInsertError || !company) {
+    if (companyCreateError || !company) {
       throw new BaseError(
         'Não foi possível criar a empresa, tente novamente mais tarde',
       )
     }
 
     try {
-      const { error: userUpdateError } = await supabase
-        .from('users')
-        .update({ company_id: company.id })
-        .eq('id', user.id)
+      const { error: userUpdateError } = await updateUser(supabase, user.id, {
+        company_id: company.id,
+      })
 
       if (userUpdateError) {
         throw new BaseError('Erro ao vincular a empresa ao usuário.')
