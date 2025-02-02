@@ -1,7 +1,9 @@
 import { cache } from 'react'
+
+import { createClient } from '../../client/server'
+import { getUserQuery } from '../../queries/user'
+
 import { getSession } from './session'
-import { createClient } from '../client/server'
-import { getUserQuery } from '../queries/user'
 
 export const getUser = cache(async () => {
   const {

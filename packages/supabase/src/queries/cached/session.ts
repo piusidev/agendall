@@ -1,6 +1,6 @@
 import { cache } from 'react'
 
-import { createClient } from '../client/server'
+import { createClient } from '../../client/server'
 
 export const getSession = cache(async () => {
   const supabase = createClient()

@@ -1,9 +1,10 @@
 import { createSafeActionClient } from 'next-safe-action'
 
+import { createClient } from '@agendall/supabase/server'
+import { getUser } from '@agendall/supabase/queries/cached/user'
+
 import { DEFAULT_SERVER_ERROR_MESSAGE } from '../utils/constants'
 import { BaseError } from '../errors/base-error'
-import { createClient } from '@agendall/supabase/server'
-import { getUser } from '@agendall/supabase/cached-queries/user'
 
 export const actionClient = createSafeActionClient({
   handleServerError(e) {
