@@ -9,53 +9,6 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      access_requests: {
-        Row: {
-          company_document: string
-          company_name: string
-          company_type: string
-          created_at: string
-          employee_count: number
-          id: string
-          observations: string | null
-          responsible_email: string
-          responsible_name: string
-          responsible_phone: string
-        }
-        Insert: {
-          company_document: string
-          company_name: string
-          company_type?: string
-          created_at?: string
-          employee_count: number
-          id?: string
-          observations?: string | null
-          responsible_email: string
-          responsible_name: string
-          responsible_phone: string
-        }
-        Update: {
-          company_document?: string
-          company_name?: string
-          company_type?: string
-          created_at?: string
-          employee_count?: number
-          id?: string
-          observations?: string | null
-          responsible_email?: string
-          responsible_name?: string
-          responsible_phone?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: 'access_requests_company_type_fkey'
-            columns: ['company_type']
-            isOneToOne: false
-            referencedRelation: 'company_types'
-            referencedColumns: ['id']
-          },
-        ]
-      }
       companies: {
         Row: {
           city: string
@@ -66,11 +19,11 @@ export type Database = {
           name: string
           neighborhood: string
           number: string
-          postal_code: string
           state: string
           status: Database['public']['Enums']['client_status']
           street: string
           type: string | null
+          zipcode: string
         }
         Insert: {
           city: string
@@ -81,11 +34,11 @@ export type Database = {
           name: string
           neighborhood: string
           number: string
-          postal_code: string
           state: string
           status?: Database['public']['Enums']['client_status']
           street: string
           type?: string | null
+          zipcode: string
         }
         Update: {
           city?: string
@@ -96,11 +49,11 @@ export type Database = {
           name?: string
           neighborhood?: string
           number?: string
-          postal_code?: string
           state?: string
           status?: Database['public']['Enums']['client_status']
           street?: string
           type?: string | null
+          zipcode?: string
         }
         Relationships: [
           {
@@ -132,21 +85,21 @@ export type Database = {
       }
       users: {
         Row: {
-          client_id: string | null
+          company_id: string | null
           created_at: string
           first_name: string
           id: string
           last_name: string
         }
         Insert: {
-          client_id?: string | null
+          company_id?: string | null
           created_at?: string
           first_name: string
           id?: string
           last_name: string
         }
         Update: {
-          client_id?: string | null
+          company_id?: string | null
           created_at?: string
           first_name?: string
           id?: string
@@ -155,7 +108,7 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: 'users_client_id_fkey'
-            columns: ['client_id']
+            columns: ['company_id']
             isOneToOne: false
             referencedRelation: 'companies'
             referencedColumns: ['id']
