@@ -17,5 +17,6 @@ export function useCompanyTypes() {
       }))
     },
     refetchOnMount: false,
+    refetchOnWindowFocus: false,
   })
 }
