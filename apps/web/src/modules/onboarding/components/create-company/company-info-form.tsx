@@ -30,7 +30,7 @@ import {
   companyInfoSchema,
   type CompanyInfoSchema,
 } from '@/modules/onboarding/schemas/create-company'
-import { useCreateCompanyStore } from '@/modules/onboarding/stores/create-company'
+import { useCreateCompanyStore } from '@/modules/onboarding/store/create-company'
 import { useCompanyTypes } from '@/modules/shared/hooks/use-company-types'
 
 export function CompanyInfoForm() {

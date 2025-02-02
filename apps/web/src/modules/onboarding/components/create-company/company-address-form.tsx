@@ -23,7 +23,7 @@ import {
   companyAddressSchema,
   type CompanyAddressSchema,
 } from '@/modules/onboarding/schemas/create-company'
-import { useCreateCompanyStore } from '@/modules/onboarding/stores/create-company'
+import { useCreateCompanyStore } from '@/modules/onboarding/store/create-company'
 
 export function CompanyAdressForm() {
   const { company, updateCompanyAddress, updateStep } = useCreateCompanyStore()

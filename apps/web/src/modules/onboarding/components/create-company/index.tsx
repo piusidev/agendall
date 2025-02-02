@@ -8,10 +8,11 @@ import {
   CardTitle,
 } from '@agendall/ui/card'
 
-import { useCreateCompanyStore } from '@/modules/onboarding/stores/create-company'
+import { useCreateCompanyStore } from '@/modules/onboarding/store/create-company'
 
 import { CompanyInfoForm } from './company-info-form'
 import { CompanyAdressForm } from './company-address-form'
+import { CreateCompanyForm } from './create-company-form'
 
 function renderStep(step: number) {
   switch (step) {
@@ -20,7 +21,7 @@ function renderStep(step: number) {
     case 2:
       return <CompanyAdressForm />
     case 3:
-      return <CompanyAdressForm />
+      return <CreateCompanyForm />
     default:
       return null
   }
@@ -41,8 +42,8 @@ function getStepHeader(step: number) {
       }
     case 3:
       return {
-        title: 'Tudo pronto!',
-        description: 'Sua empresa foi criada e configurada com sucesso',
+        title: 'Criar empresa',
+        description: 'Cheque as informações e criaremos sua empresa',
       }
     default:
       return {
