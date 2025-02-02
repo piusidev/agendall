@@ -3,6 +3,7 @@ import { createSafeActionClient } from 'next-safe-action'
 import { DEFAULT_SERVER_ERROR_MESSAGE } from '../utils/constants'
 import { BaseError } from '../errors/base-error'
 import { createClient } from '@agendall/supabase/server'
+import { getUser } from '@agendall/supabase/cached-queries/user'
 
 export const actionClient = createSafeActionClient({
   handleServerError(e) {
@@ -15,10 +16,10 @@ export const actionClient = createSafeActionClient({
 })
 
 export const authActionClient = actionClient.use(async ({ next }) => {
+  const user = await getUser()
   const supabase = createClient()
-  const user = await supabase.auth.getUser()
 
-  if (!user.data) {
+  if (!user?.data) {
     throw new BaseError('Usuário não autenticado')
   }
 
