@@ -20,5 +20,15 @@ export const loginAction = actionClient
       throw new BaseError('Credenciais inválidas')
     }
 
-    return redirect('/onboarding')
+    if (error?.code === 'email_not_confirmed') {
+      throw new BaseError('Confirme seu e-mail para continuar')
+    }
+
+    if (error) {
+      throw new BaseError(
+        'Erro ao fazer login, tente novamente em alguns minutos',
+      )
+    }
+
+    redirect('/onboarding')
   })
