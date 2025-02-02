@@ -1,16 +1,19 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { getCompanyTypes } from '../services/company-types'
+import { createClient } from '@agendall/supabase/client'
+import { CACHE_KEYS } from '../config/cache-keys'
 
 export function useCompanyTypes() {
   return useQuery({
-    queryKey: ['company-types'],
+    queryKey: [CACHE_KEYS.COMPANY_TYPES],
     queryFn: async () => {
-      const { data: companyTypes } = await getCompanyTypes()
+      const supabase = createClient()
 
-      return companyTypes.map((item) => ({
-        value: item.id,
-        label: item.name,
+      const { data } = await supabase.from('company_types').select('id, name')
+
+      return data?.map((companyType) => ({
+        value: companyType.id,
+        label: companyType.name,
       }))
     },
     refetchOnMount: false,
