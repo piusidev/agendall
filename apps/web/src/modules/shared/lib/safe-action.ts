@@ -4,11 +4,11 @@ import { createClient } from '@agendall/supabase/server'
 import { getUser } from '@agendall/supabase/queries/cached/user'
 
 import { DEFAULT_SERVER_ERROR_MESSAGE } from '../utils/constants'
-import { BaseError } from '../errors/base-error'
+import { ActionError } from '../errors/action-error'
 
 export const actionClient = createSafeActionClient({
-  handleServerError(e) {
-    if (e instanceof BaseError) {
+  handleActionError(e) {
+    if (e instanceof ActionError) {
       return e.message
     }
 
@@ -21,7 +21,7 @@ export const authActionClient = actionClient.use(async ({ next }) => {
   const supabase = createClient()
 
   if (!user?.data) {
-    throw new BaseError('Usuário não autenticado')
+    throw new ActionError('Usuário não autenticado')
   }
 
   return next({

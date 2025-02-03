@@ -6,7 +6,7 @@ import { updateUser } from '@agendall/supabase/mutations/user'
 import { createCompany } from '@agendall/supabase/mutations/company'
 
 import { authActionClient } from '@/modules/shared/lib/safe-action'
-import { BaseError } from '@/modules/shared/errors/base-error'
+import { ActionError } from '@/modules/shared/errors/action-error'
 import { routes } from '@/modules/shared/config/routes'
 import { sanitize } from '@/modules/shared/utils/formatters'
 
@@ -16,7 +16,7 @@ export const createCompanyAction = authActionClient
   .schema(createCompanySchema)
   .action(async ({ parsedInput, ctx: { supabase, user } }) => {
     if (user.company_id) {
-      throw new BaseError('Você já possui uma empresa cadastrada')
+      throw new ActionError('Você já possui uma empresa cadastrada')
     }
 
     const { data: company, error: companyCreateError } = await createCompany(
@@ -28,7 +28,7 @@ export const createCompanyAction = authActionClient
     )
 
     if (companyCreateError || !company) {
-      throw new BaseError(
+      throw new ActionError(
         'Não foi possível criar a empresa, tente novamente mais tarde',
       )
     }
@@ -39,7 +39,7 @@ export const createCompanyAction = authActionClient
       })
 
       if (userUpdateError) {
-        throw new BaseError('Erro ao vincular a empresa ao usuário.')
+        throw new ActionError('Erro ao vincular a empresa ao usuário.')
       }
 
       await supabase.auth.updateUser({
@@ -48,11 +48,11 @@ export const createCompanyAction = authActionClient
     } catch (error) {
       await supabase.from('companies').delete().eq('id', company.id)
 
-      if (error instanceof BaseError) {
+      if (error instanceof ActionError) {
         throw error
       }
 
-      throw new BaseError('Erro inesperado ao criar a empresa.')
+      throw new ActionError('Erro inesperado ao criar a empresa.')
     }
 
     redirect(routes.dashboard)

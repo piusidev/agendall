@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@agendall/supabase/server'
 
 import { actionClient } from '@/modules/shared/lib/safe-action'
-import { BaseError } from '@/modules/shared/errors/base-error'
+import { ActionError } from '@/modules/shared/errors/action-error'
 
 import { loginFormSchema } from '../schemas/login'
 
@@ -17,15 +17,15 @@ export const loginAction = actionClient
     const { error } = await supabase.auth.signInWithPassword(parsedInput)
 
     if (error?.code === 'invalid_credentials') {
-      throw new BaseError('Credenciais inválidas')
+      throw new ActionError('Credenciais inválidas')
     }
 
     if (error?.code === 'email_not_confirmed') {
-      throw new BaseError('Confirme seu e-mail para continuar')
+      throw new ActionError('Confirme seu e-mail para continuar')
     }
 
     if (error) {
-      throw new BaseError(
+      throw new ActionError(
         'Erro ao fazer login, tente novamente em alguns minutos',
       )
     }
