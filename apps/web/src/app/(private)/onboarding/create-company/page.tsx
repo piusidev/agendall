@@ -6,6 +6,6 @@ export const metadata: Metadata = {
   title: 'Onboarding - Criar empresa',
 }
 
-export default async function Page() {
+export default function Page() {
   return <CreateCompany />
 }
