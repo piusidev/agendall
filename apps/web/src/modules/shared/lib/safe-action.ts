@@ -7,7 +7,7 @@ import { DEFAULT_SERVER_ERROR_MESSAGE } from '../utils/constants'
 import { ActionError } from '../errors/action-error'
 
 export const actionClient = createSafeActionClient({
-  handleActionError(e) {
+  handleServerError(e) {
     if (e instanceof ActionError) {
       return e.message
     }
