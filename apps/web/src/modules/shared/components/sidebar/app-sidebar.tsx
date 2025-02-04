@@ -3,15 +3,14 @@
 import * as React from 'react'
 import {
   Command,
+  LayoutDashboard,
   LifeBuoy,
   Send,
   Settings2,
-  SquareTerminal,
 } from 'lucide-react'
 
 import { NavMain } from './nav-main'
 import { NavSecondary } from './nav-secondary'
-import { NavUser } from './nav-user'
 import {
   Sidebar,
   SidebarContent,
@@ -23,53 +22,26 @@ import {
 } from '@agendall/ui/sidebar'
 import Link from 'next/link'
 import { routes } from '../../config/routes'
+import { UserMenu } from '../user-menu'
 
 const data = {
-  user: {
-    name: 'shadcn',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
-  },
   navMain: [
     {
       title: 'Dashboard',
       url: '#',
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: 'History',
-          url: '#',
-        },
-        {
-          title: 'Starred',
-          url: '#',
-        },
-        {
-          title: 'Settings',
-          url: '#',
-        },
-      ],
+      icon: LayoutDashboard,
     },
     {
-      title: 'Settings',
+      title: 'Configurações',
       url: '#',
       icon: Settings2,
       items: [
         {
-          title: 'General',
+          title: 'Empresa',
           url: '#',
         },
         {
-          title: 'Team',
-          url: '#',
-        },
-        {
-          title: 'Billing',
-          url: '#',
-        },
-        {
-          title: 'Limits',
+          title: 'Profissionais',
           url: '#',
         },
       ],
@@ -77,7 +49,7 @@ const data = {
   ],
   navSecondary: [
     {
-      title: 'Support',
+      title: 'Suporte',
       url: '#',
       icon: LifeBuoy,
     },
@@ -101,8 +73,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <Command className="size-4" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">Acme Inc</span>
-                  <span className="truncate text-xs">Enterprise</span>
+                  <span className="truncate font-semibold">Agendall</span>
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -116,7 +87,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
 
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <UserMenu />
       </SidebarFooter>
     </Sidebar>
   )
