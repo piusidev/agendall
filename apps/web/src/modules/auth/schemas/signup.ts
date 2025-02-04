@@ -2,11 +2,7 @@ import { z } from 'zod'
 
 export const signUpSchema = z
   .object({
-    first_name: z.string().min(1, 'Campo obrigatório').min(3, 'Nome inválido'),
-    last_name: z
-      .string()
-      .min(1, 'Campo obrigatório')
-      .min(3, 'Sobrenome inválido'),
+    name: z.string().min(1, 'Campo obrigatório').min(3, 'Nome inválido'),
     email: z.string().email('Email inválido').min(1, 'Campo obrigatório'),
     password: z
       .string()

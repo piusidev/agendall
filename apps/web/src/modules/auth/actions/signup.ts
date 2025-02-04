@@ -15,8 +15,7 @@ export const signUpAction = actionClient
       password: parsedInput.password,
       options: {
         data: {
-          first_name: parsedInput.first_name,
-          last_name: parsedInput.last_name,
+          name: parsedInput.name,
         },
       },
     })
