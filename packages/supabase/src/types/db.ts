@@ -22,7 +22,7 @@ export type Database = {
           state: string
           status: Database['public']['Enums']['client_status']
           street: string
-          type: string | null
+          type: string
           zipcode: string
         }
         Insert: {
@@ -37,7 +37,7 @@ export type Database = {
           state: string
           status?: Database['public']['Enums']['client_status']
           street: string
-          type?: string | null
+          type?: string
           zipcode: string
         }
         Update: {
@@ -52,7 +52,7 @@ export type Database = {
           state?: string
           status?: Database['public']['Enums']['client_status']
           street?: string
-          type?: string | null
+          type?: string
           zipcode?: string
         }
         Relationships: [
@@ -87,27 +87,27 @@ export type Database = {
         Row: {
           company_id: string | null
           created_at: string
-          first_name: string
+          email: string
           id: string
-          last_name: string
+          name: string
         }
         Insert: {
           company_id?: string | null
           created_at?: string
-          first_name: string
+          email: string
           id?: string
-          last_name: string
+          name: string
         }
         Update: {
           company_id?: string | null
           created_at?: string
-          first_name?: string
+          email?: string
           id?: string
-          last_name?: string
+          name?: string
         }
         Relationships: [
           {
-            foreignKeyName: 'users_client_id_fkey'
+            foreignKeyName: 'users_company_id_fkey'
             columns: ['company_id']
             isOneToOne: false
             referencedRelation: 'companies'
