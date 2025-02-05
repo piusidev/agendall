@@ -28,9 +28,13 @@ import {
 import { useUser } from '@/modules/auth/store/user/hooks'
 
 import { getNameInitials } from '../utils/string'
+import { signOutAction } from '@/modules/auth/actions/signout'
+import { useAction } from 'next-safe-action/hooks'
 
 export function UserMenu() {
   const { isMobile } = useSidebar()
+
+  const { execute, isExecuting } = useAction(signOutAction)
 
   const user = useUser((state) => state.user)
   const nameInitials = getNameInitials(user.name)
@@ -109,9 +113,15 @@ export function UserMenu() {
 
             <DropdownMenuSeparator />
 
-            <DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={(e) => {
+                e.preventDefault()
+
+                execute()
+              }}
+            >
               <LogOut />
-              Sair
+              {isExecuting ? 'Saindo...' : 'Sair'}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
