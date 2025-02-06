@@ -28,7 +28,7 @@ const data = {
   navMain: [
     {
       title: 'Dashboard',
-      url: '#',
+      url: routes.dashboard,
       icon: LayoutDashboard,
     },
     {
@@ -42,7 +42,7 @@ const data = {
         },
         {
           title: 'Profissionais',
-          url: '#',
+          url: routes.settings.professionals,
         },
       ],
     },

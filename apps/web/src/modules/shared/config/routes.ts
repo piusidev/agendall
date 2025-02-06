@@ -9,4 +9,7 @@ export const routes = {
     joinCompany: '/onboarding/join-company',
   },
   dashboard: '/dashboard',
+  settings: {
+    professionals: '/settings/professionals',
+  },
 }
