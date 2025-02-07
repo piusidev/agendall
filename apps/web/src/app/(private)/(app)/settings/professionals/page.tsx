@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { BreadcrumbsConfig } from '@/modules/shared/components/breadcrumbs-config'
 import { routes } from '@/modules/shared/config/routes'
+import { PageHeader } from '@/modules/shared/components/page-header'
 
 export const metadata: Metadata = {
   title: 'Profissionais',
@@ -21,7 +22,10 @@ export default function Page() {
     <div>
       <BreadcrumbsConfig items={breadcrumbs} />
 
-      <div>oi</div>
+      <PageHeader
+        title="Profissionais"
+        description="Gerencie os profissionais da sua empresa"
+      />
     </div>
   )
 }
