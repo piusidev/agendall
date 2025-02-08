@@ -27,6 +27,7 @@
     "./sheet": "./src/components/sheet.tsx",
     "./sidebar": "./src/components/sidebar.tsx",
     "./skeleton": "./src/components/skeleton.tsx",
+    "./table": "./src/components/table.tsx",
     "./toast": "./src/components/toast.tsx",
     "./tooltip": "./src/components/tooltip.tsx"
   },
