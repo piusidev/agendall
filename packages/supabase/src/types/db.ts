@@ -87,19 +87,22 @@ export type Database = {
         Row: {
           company_id: string
           created_at: string
-          id: number
+          id: string
+          status: Database['public']['Enums']['professional_status']
           user_id: string | null
         }
         Insert: {
           company_id: string
           created_at?: string
-          id?: number
+          id?: string
+          status?: Database['public']['Enums']['professional_status']
           user_id?: string | null
         }
         Update: {
           company_id?: string
           created_at?: string
-          id?: number
+          id?: string
+          status?: Database['public']['Enums']['professional_status']
           user_id?: string | null
         }
         Relationships: [
@@ -156,10 +159,15 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_user_company: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
     }
     Enums: {
       client_status: 'active' | 'inactive' | 'pending'
+      professional_status: 'active' | 'inactive' | 'pending'
+      status: 'active' | 'inactive'
     }
     CompositeTypes: {
       [_ in never]: never
