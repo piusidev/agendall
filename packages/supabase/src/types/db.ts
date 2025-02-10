@@ -88,21 +88,24 @@ export type Database = {
           company_id: string
           created_at: string
           id: string
-          status: Database['public']['Enums']['professional_status']
+          role: Database['public']['Enums']['roles']
+          status: Database['public']['Enums']['status']
           user_id: string | null
         }
         Insert: {
           company_id: string
           created_at?: string
           id?: string
-          status?: Database['public']['Enums']['professional_status']
+          role?: Database['public']['Enums']['roles']
+          status?: Database['public']['Enums']['status']
           user_id?: string | null
         }
         Update: {
           company_id?: string
           created_at?: string
           id?: string
-          status?: Database['public']['Enums']['professional_status']
+          role?: Database['public']['Enums']['roles']
+          status?: Database['public']['Enums']['status']
           user_id?: string | null
         }
         Relationships: [
@@ -116,6 +119,48 @@ export type Database = {
           {
             foreignKeyName: 'professionals_user_id_fkey'
             columns: ['user_id']
+            isOneToOne: false
+            referencedRelation: 'users'
+            referencedColumns: ['id']
+          },
+        ]
+      }
+      user_invites: {
+        Row: {
+          company_id: string
+          created_at: string
+          email: string
+          id: string
+          invited_by: string
+          role: Database['public']['Enums']['roles']
+        }
+        Insert: {
+          company_id: string
+          created_at?: string
+          email: string
+          id?: string
+          invited_by: string
+          role?: Database['public']['Enums']['roles']
+        }
+        Update: {
+          company_id?: string
+          created_at?: string
+          email?: string
+          id?: string
+          invited_by?: string
+          role?: Database['public']['Enums']['roles']
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'user_invites_company_id_fkey'
+            columns: ['company_id']
+            isOneToOne: false
+            referencedRelation: 'companies'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'user_invites_invited_by_fkey'
+            columns: ['invited_by']
             isOneToOne: false
             referencedRelation: 'users'
             referencedColumns: ['id']
@@ -167,6 +212,7 @@ export type Database = {
     Enums: {
       client_status: 'active' | 'inactive' | 'pending'
       professional_status: 'active' | 'inactive' | 'pending'
+      roles: 'owner' | 'member'
       status: 'active' | 'inactive'
     }
     CompositeTypes: {
