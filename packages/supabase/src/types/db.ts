@@ -174,6 +174,7 @@ export type Database = {
           email: string
           id: string
           name: string
+          role: Database['public']['Enums']['roles']
         }
         Insert: {
           company_id?: string | null
@@ -181,6 +182,7 @@ export type Database = {
           email: string
           id?: string
           name: string
+          role?: Database['public']['Enums']['roles']
         }
         Update: {
           company_id?: string | null
@@ -188,6 +190,7 @@ export type Database = {
           email?: string
           id?: string
           name?: string
+          role?: Database['public']['Enums']['roles']
         }
         Relationships: [
           {
