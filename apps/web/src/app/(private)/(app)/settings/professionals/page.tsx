@@ -5,6 +5,9 @@ import { PageHeader } from '@/modules/shared/components/page-header'
 import { DataTable } from '@/modules/professionals/components/professionals-table/table'
 import { getProfessionals } from '@agendall/supabase/queries/cached/professional'
 
+import { InviteProfessional } from '@/modules/professionals/components/invite-professional/dialog'
+import { InvitedProfessionals } from '@/modules/professionals/components/invited-professionals/dialog'
+
 export const metadata: Metadata = {
   title: 'Profissionais',
 }
@@ -22,8 +25,6 @@ const breadcrumbs = [
 export default async function Page() {
   const professionals = await getProfessionals()
 
-  console.log(professionals)
-
   return (
     <main className="container mx-auto">
       <BreadcrumbsConfig items={breadcrumbs} />
@@ -33,36 +34,47 @@ export default async function Page() {
         description="Gerencie os profissionais da sua empresa"
       />
 
-      <DataTable
-        data={[
-          {
-            id: '1',
-            name: 'Leonardo',
-            email: 'leopidev@gmail.com',
-            phone: '(19) 99999-9999',
-          },
-          {
-            id: '1',
-            name: 'Leonardo',
-            email: 'leopidev@gmail.com',
-            phone: '(19) 99999-9999',
-          },
-          {
-            id: '1',
-            name: 'Leonardo',
-            email: 'leopidev@gmail.com',
-            phone: '(19) 99999-9999',
-          },
-          {
-            id: '1',
-            name: 'Leonardo',
-            email: 'leopidev@gmail.com',
-            phone: '(19) 99999-9999',
-          },
-        ]}
-        pageSize={10}
-        hasNextPage={false}
-      />
+      <div className="grid gap-4">
+        <div className="flex gap-2 items-center justify-between">
+          <div></div>
+
+          <div className="flex items-center gap-2">
+            <InvitedProfessionals />
+            <InviteProfessional />
+          </div>
+        </div>
+
+        <DataTable
+          data={[
+            {
+              id: '1',
+              name: 'Leonardo',
+              email: 'leopidev@gmail.com',
+              phone: '(19) 99999-9999',
+            },
+            {
+              id: '1',
+              name: 'Leonardo',
+              email: 'leopidev@gmail.com',
+              phone: '(19) 99999-9999',
+            },
+            {
+              id: '1',
+              name: 'Leonardo',
+              email: 'leopidev@gmail.com',
+              phone: '(19) 99999-9999',
+            },
+            {
+              id: '1',
+              name: 'Leonardo',
+              email: 'leopidev@gmail.com',
+              phone: '(19) 99999-9999',
+            },
+          ]}
+          pageSize={10}
+          hasNextPage={false}
+        />
+      </div>
     </main>
   )
 }
